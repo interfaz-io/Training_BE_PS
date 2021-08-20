@@ -3,7 +3,9 @@
  */
 package io.interfaz.training.pojos;
 
-import java.util.List;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -25,27 +27,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "customers")
+@Table(name = "orders")
 @Entity
-public class Customers {
+public class Orders {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "country_id")
-	private int countryID;
-
-	@Column(name = "first_name")
-	private String firstName;
-
-	@Column(name = "last_name")
-	private String lastName;
-
-	private String email;
-
-	private String status;
 	
-	@OneToMany()
-	@JoinColumn(name="customer_id")
-	private List<Orders> orders ;
-
+	@Column(name ="customer_id")
+	private int customerId;
+	
+	@Column(name ="purchase_date")
+	private Date purchaseDate;
+	
+	private BigDecimal subtotal;
+	
+	private BigDecimal iva;
+	
+	private BigDecimal total;
+	
+	
 }

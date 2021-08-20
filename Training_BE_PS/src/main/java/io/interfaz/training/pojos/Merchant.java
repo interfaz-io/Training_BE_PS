@@ -1,10 +1,8 @@
-/**
- * 
- */
 package io.interfaz.training.pojos;
 
-import java.math.BigDecimal;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,16 +14,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author tthornton
+ * @author Victor Bolanos
  *
  */
-@Table(name = "products")
-@Entity
 @Data
+@Table(name = "merchant")
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Products {
-
+public class Merchant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -34,8 +31,9 @@ public class Products {
 
 	private String description;
 
-	private BigDecimal price;
-
 	private String status;
+
+	@Column(name = "creationdate")
+	private Date creationDate;
 
 }
