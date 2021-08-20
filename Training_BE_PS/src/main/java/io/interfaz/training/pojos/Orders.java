@@ -3,7 +3,8 @@
  */
 package io.interfaz.training.pojos;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,23 +24,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "customers")
+@Table(name = "orders")
 @Entity
-public class Customers {
+public class Orders {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "country_id")
-	private int countryID;
-
-	@Column(name = "first_name")
-	private String firstName;
-
-	@Column(name = "last_name")
-	private String lastName;
-
-	private String email;
-
-	private String status;
-
+	
+	@Column(name ="customer_id")
+	private int customerId;
+	
+	@Column(name ="purchase_date")
+	private Date purchaseDate;
+	
+	private double subtotal;
+	
+	private double iva;
+	
+	private double total;
+	
 }
