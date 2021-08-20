@@ -3,15 +3,13 @@
  */
 package io.interfaz.training.pojos;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -25,27 +23,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "customers")
+@Table(name = "orders_details")
 @Entity
-public class Customers {
+public class OrdersDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "country_id")
-	private int countryID;
 
-	@Column(name = "first_name")
-	private String firstName;
-
-	@Column(name = "last_name")
-	private String lastName;
-
-	private String email;
-
-	private String status;
+	@Column(name="order_id")
+	private int orderID;
 	
-	@OneToMany()
-	@JoinColumn(name="customer_id")
-	private List<Orders> orders ;
+	@Column(name="product_id")
+	private int productId;
 
+	private int quantity;
+
+	private BigDecimal price;
+
+	@Column(name="total_amount")
+	private int totalAmount;
 }
