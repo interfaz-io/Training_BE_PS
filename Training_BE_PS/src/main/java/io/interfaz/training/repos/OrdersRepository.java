@@ -9,7 +9,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import io.interfaz.training.pojos.Customers;
 import io.interfaz.training.pojos.Orders;
 
 /**
@@ -19,7 +18,7 @@ import io.interfaz.training.pojos.Orders;
 public interface OrdersRepository {
 
 	@RepositoryRestResource(collectionResourceRel = "orders", path = "orders")
-	public interface CustomersRepository extends CrudRepository<Customers, Integer>{
+	public interface CustomersRepository extends CrudRepository<Orders, Integer>{
 
 		List<Orders> findAll(Sort sort);
 		
