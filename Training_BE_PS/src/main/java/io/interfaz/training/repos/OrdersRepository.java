@@ -15,13 +15,11 @@ import io.interfaz.training.pojos.Orders;
  * @author tthornton
  *
  */
-public interface OrdersRepository {
-
-	@RepositoryRestResource(collectionResourceRel = "orders", path = "orders")
-	public interface CustomersRepository extends CrudRepository<Orders, Integer>{
+@RepositoryRestResource(collectionResourceRel = "orders", path = "orders")
+public interface OrdersRepository extends CrudRepository<Orders, Integer> {
 
 		List<Orders> findAll(Sort sort);
 		
 	}
 	
-}
+

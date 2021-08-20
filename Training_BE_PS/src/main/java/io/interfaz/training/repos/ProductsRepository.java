@@ -15,11 +15,9 @@ import io.interfaz.training.pojos.Products;
  * @author tthornton
  *
  */
-public interface ProductsRepository {
-	@RepositoryRestResource(collectionResourceRel = "products", path = "products")
-	public interface CustomersRepository extends CrudRepository<Products, Integer>{
-
+@RepositoryRestResource(collectionResourceRel = "products", path = "products")
+public interface ProductsRepository extends CrudRepository<Products, Integer> {
 		List<Products> findAll(Sort sort);
 		
 	}
-}
+
