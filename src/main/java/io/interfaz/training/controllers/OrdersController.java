@@ -20,41 +20,41 @@ import io.interfaz.training.services.OrdersService;
 public class OrdersController {
 	@Autowired
 	public OrdersService ordersService;
-	
+
 	@GetMapping("/orders")
-	public List<Orders> all(){
+	public List<Orders> all() {
 		return ordersService.getAll();
 	}
+
 	@GetMapping("/orders/{id}")
 	public Optional<Orders> productId(@PathVariable int id) {
 		return ordersService.getById(id);
 	}
+
 	@PostMapping("/orders")
 	public Orders newOrder(@RequestBody Orders newOrder) {
 		return ordersService.createOrder(newOrder);
 	}
+
 	@DeleteMapping("/orders/{id}")
 	public void deleteOrder(@PathVariable int id) {
 		ordersService.deleteOrder(id);
 	}
-	
+
 	@PutMapping("/orders/{id}")
 	public Orders replaceOrder(@RequestBody Orders newOrder, @PathVariable int id) {
-		return ordersService.getById(id)
-				.map(order ->{
-					order.setCustomerID(newOrder.getCustomerID());
-					order.setDetails(newOrder.getDetails());
-					order.setIva(newOrder.getIva());
-					order.setPurchaseDate(newOrder.getPurchaseDate());
-					order.setSubtotal(newOrder.getSubtotal());
-					order.setTotal(newOrder.getTotal());
-					return ordersService.createOrder(order);
-				})
-				.orElseGet(()->{
-					newOrder.setId(id);
-					return ordersService.createOrder(newOrder);
-				});
+		return ordersService.getById(id).map(order -> {
+			order.setCustomerID(newOrder.getCustomerID());
+			order.setDetails(newOrder.getDetails());
+			order.setIva(newOrder.getIva());
+			order.setPurchaseDate(newOrder.getPurchaseDate());
+			order.setSubtotal(newOrder.getSubtotal());
+			order.setTotal(newOrder.getTotal());
+			return ordersService.createOrder(order);
+		}).orElseGet(() -> {
+			newOrder.setId(id);
+			return ordersService.createOrder(newOrder);
+		});
 	}
-	
-	
+
 }
