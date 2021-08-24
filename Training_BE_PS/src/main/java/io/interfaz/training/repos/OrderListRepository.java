@@ -13,6 +13,6 @@ import io.interfaz.training.entities.OrdersDetails;
 @RepositoryRestResource(collectionResourceRel = "ordersdetails", path = "ordersdetails")
 public interface OrderListRepository extends CrudRepository<OrdersDetails, Integer> {
 
-	List<Merchant> findAll(Sort sort);
+	List<OrdersDetails> findAll(Sort sort);
 
 }

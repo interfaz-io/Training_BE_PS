@@ -37,8 +37,9 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name ="customer_id")
-	private int customerId;
+	@ManyToOne()
+	@JoinColumn(name="customer_id" )
+	private Customers customers;
 	
 	@Column(name ="purchase_date")
 	private Date purchaseDate;
@@ -49,6 +50,6 @@ public class Orders {
 	
 	private BigDecimal total;
 	
-	@OneToMany(mappedBy ="order_id")
+	@OneToMany(mappedBy ="id")
 	private List<OrdersDetails> details ;
 }
