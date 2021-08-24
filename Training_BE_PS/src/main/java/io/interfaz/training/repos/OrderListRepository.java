@@ -6,7 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import io.interfaz.training.entities.Merchant;
+
 import io.interfaz.training.entities.OrdersDetails;
 
 
