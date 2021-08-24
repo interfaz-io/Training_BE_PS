@@ -3,7 +3,7 @@
  */
 package io.interfaz.training.entities;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -25,26 +26,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "customers")
+@Table(name = "orders_details")
 @Entity
-public class Customers {
+public class OrdersDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "country_id")
-	private int countryID;
 
-	@Column(name = "first_name")
-	private String firstName;
+	@Column(name = "order_id")
+	private int order;
 
-	@Column(name = "last_name")
-	private String lastName;
+	private int quantity;
 
-	private String email;
+	private BigDecimal price;
 
-	private String status;
-	
-	@OneToMany(mappedBy = "id")
-	private List<Orders> orders ;
+	@Column(name = "total_amount")
+	private int totalAmount;
+
+	@OneToOne()
+	@JoinColumn(name = "product_id", referencedColumnName = "id")
+	private Products products;
 
 }

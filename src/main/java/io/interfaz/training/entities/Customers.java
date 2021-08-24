@@ -3,16 +3,16 @@
  */
 package io.interfaz.training.entities;
 
-import java.math.BigDecimal;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -26,25 +26,28 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "orders_details")
+@Table(name = "customers")
 @Entity
-public class OrdersDetails {
+public class Customers {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "country_id")
+	private int countryID;
 
-	@ManyToOne()
-	@JoinColumn(name="order_id" )	
-	private Orders orders;
+	@Column(name = "first_name")
+	private String firstName;
+
+	@Column(name = "last_name")
+	private String lastName;
+
+	private String email;
+
+	private String status;
 	
-	@OneToOne()
-	@JoinColumn(name="product_id", referencedColumnName = "id")
-	private Products products;
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	@OneToMany
+	@JoinColumn(name = "customer_id")
+	private List<Orders> orders ;
 
-	private int quantity;
-
-	private BigDecimal price;
-
-	@Column(name="total_amount")
-	private int totalAmount;
 }
