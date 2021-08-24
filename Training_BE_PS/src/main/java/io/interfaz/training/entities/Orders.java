@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.interfaz.training.pojos;
+package io.interfaz.training.entities;
 
 
 import java.math.BigDecimal;

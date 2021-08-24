@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.interfaz.training.pojos;
+package io.interfaz.training.entities;
 
 import java.math.BigDecimal;
 
@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Products {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
