@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -37,9 +36,8 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne()
-	@JoinColumn(name="customer_id" )
-	private Customers customers;
+	@Column(name="customer_id" )
+	private int customerID;
 	
 	@Column(name ="purchase_date")
 	private Date purchaseDate;
@@ -50,6 +48,7 @@ public class Orders {
 	
 	private BigDecimal total;
 	
-	@OneToMany(mappedBy ="id")
+	@OneToMany()
+	@JoinColumn(name="order_id")
 	private List<OrdersDetails> details ;
 }

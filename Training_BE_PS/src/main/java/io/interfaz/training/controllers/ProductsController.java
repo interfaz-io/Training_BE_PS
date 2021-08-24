@@ -32,7 +32,7 @@ public class ProductsController {
 	public Optional<Products> productId(@PathVariable int id) {
 		return productsService.getById(id);
 	}
-	@PostMapping("/addProducts")
+	@PostMapping("/Products")
 	public Products newProduct(@RequestBody Products newProduct) {
 		return productsService.createProduct(newProduct);
 	}

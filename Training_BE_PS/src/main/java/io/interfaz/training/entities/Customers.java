@@ -44,7 +44,9 @@ public class Customers {
 
 	private String status;
 	
-	@OneToMany(mappedBy = "id")
+	//@OneToMany(mappedBy = "customer_id")
+	@OneToMany()
+	@JoinColumn(name="customer_id")
 	private List<Orders> orders ;
 
 }

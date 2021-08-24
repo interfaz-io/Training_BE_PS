@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,18 +32,18 @@ public class OrdersDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@ManyToOne()
-	@JoinColumn(name="order_id" )	
-	private Orders orders;
-	
-	@OneToOne()
-	@JoinColumn(name="product_id", referencedColumnName = "id")
-	private Products products;
+	@Column(name = "order_id")
+	private int orderId;
 
 	private int quantity;
 
 	private BigDecimal price;
 
-	@Column(name="total_amount")
+	@Column(name = "total_amount")
 	private int totalAmount;
+
+	@OneToOne()
+	@JoinColumn(name = "product_id", referencedColumnName = "id")
+	private Products products;
+
 }
