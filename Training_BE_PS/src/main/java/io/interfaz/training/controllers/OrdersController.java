@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.interfaz.training.entities.Orders;
-import io.interfaz.training.entities.Products;
 import io.interfaz.training.services.OrdersService;
 
 @RestController
@@ -44,7 +43,7 @@ public class OrdersController {
 		return ordersService.getById(id)
 				.map(order ->{
 					order.setCustomers(newOrder.getCustomers());
-					//order.setDetails(newOrder.getDetails());
+					order.setDetails(newOrder.getDetails());
 					order.setIva(newOrder.getIva());
 					order.setPurchaseDate(newOrder.getPurchaseDate());
 					order.setSubtotal(newOrder.getSubtotal());

@@ -29,7 +29,7 @@ public class CustomersController {
 	public Optional<Customers> productId(@PathVariable int id) {
 		return customerService.getById(id);
 	}
-	@PostMapping("/addCustomers")
+	@PostMapping("/customers")
 	public Customers newOrder(@RequestBody Customers newMerchant) {
 		return customerService.createCustomer(newMerchant);
 	}
