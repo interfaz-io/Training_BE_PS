@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.interfaz.training.pojos;
+package io.interfaz.training.entities;
 
 import java.util.List;
 
@@ -44,8 +44,7 @@ public class Customers {
 
 	private String status;
 	
-	@OneToMany()
-	@JoinColumn(name="customer_id")
+	@OneToMany(mappedBy ="customer_id")
 	private List<Orders> orders ;
 
 }

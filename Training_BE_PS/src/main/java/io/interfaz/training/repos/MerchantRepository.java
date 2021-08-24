@@ -6,7 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import io.interfaz.training.pojos.Merchant;
+import io.interfaz.training.entities.Merchant;
 
 @RepositoryRestResource(collectionResourceRel = "merchant", path = "merchant")
 public interface MerchantRepository extends CrudRepository<Merchant, Integer>{
