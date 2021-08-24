@@ -29,7 +29,7 @@ public class OrdersController {
 	public Optional<Orders> productId(@PathVariable int id) {
 		return ordersService.getById(id);
 	}
-	@PostMapping("/addOrder")
+	@PostMapping("/orders")
 	public Orders newOrder(@RequestBody Orders newOrder) {
 		return ordersService.createOrder(newOrder);
 	}
@@ -42,7 +42,7 @@ public class OrdersController {
 	public Orders replaceOrder(@RequestBody Orders newOrder, @PathVariable int id) {
 		return ordersService.getById(id)
 				.map(order ->{
-					order.setCustomers(newOrder.getCustomers());
+					order.setCustomerID(newOrder.getCustomerID());
 					order.setDetails(newOrder.getDetails());
 					order.setIva(newOrder.getIva());
 					order.setPurchaseDate(newOrder.getPurchaseDate());

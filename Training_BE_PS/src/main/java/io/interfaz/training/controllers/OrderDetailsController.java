@@ -32,7 +32,7 @@ public class OrderDetailsController {
 	public Optional<OrdersDetails> productId(@PathVariable int id) {
 		return ordersService.getById(id);
 	}
-	@PostMapping("/addOrderDetails")
+	@PostMapping("/OrderDetails")
 	public OrdersDetails newOrder(@RequestBody OrdersDetails newOrder) {
 		return ordersService.createOrder(newOrder);
 	}
