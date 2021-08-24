@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,7 +39,6 @@ public class OrderDetailsController {
 
 	@PostMapping("/orderDetails")
 	public OrdersDetails newOrder(@RequestBody OrdersDetails newOrder) {
-		newOrder.setTotalAmount(BigDecimal.valueOf(newOrder.getQuantity()).multiply(newOrder.getPrice()).intValue());
 		return ordersService.createOrder(newOrder);
 	}
 
@@ -47,18 +47,8 @@ public class OrderDetailsController {
 		ordersService.deleteOrder(id);
 	}
 
-	@PutMapping("/orderDetails/{id}")
+	@PatchMapping("{id}/orderDetails")
 	public OrdersDetails replaceOrderDetails(@RequestBody OrdersDetails newOrder, @PathVariable int id) {
-		return ordersService.getById(id).map(order -> {
-			order.setId(newOrder.getId());
-			order.setPrice(newOrder.getPrice());
-			order.setProducts(newOrder.getProducts());
-			order.setQuantity(newOrder.getQuantity());
-			order.setTotalAmount(BigDecimal.valueOf(newOrder.getQuantity()).multiply(newOrder.getPrice()).intValue());
-			return ordersService.createOrder(order);
-		}).orElseGet(() -> {
-			newOrder.setId(id);
-			return ordersService.createOrder(newOrder);
-		});
+		return ordersService.updateOrder(newOrder, id);
 	}
 }

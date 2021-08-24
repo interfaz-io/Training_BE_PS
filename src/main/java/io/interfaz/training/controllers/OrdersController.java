@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -41,20 +42,9 @@ public class OrdersController {
 		ordersService.deleteOrder(id);
 	}
 
-	@PutMapping("/orders/{id}")
+	@PatchMapping("/orders/{id}")
 	public Orders replaceOrder(@RequestBody Orders newOrder, @PathVariable int id) {
-		return ordersService.getById(id).map(order -> {
-			order.setCustomer(newOrder.getCustomer());
-			order.setDetails(newOrder.getDetails());
-			order.setIva(newOrder.getIva());
-			order.setPurchaseDate(newOrder.getPurchaseDate());
-			order.setSubtotal(newOrder.getSubtotal());
-			order.setTotal(newOrder.getTotal());
-			return ordersService.createOrder(order);
-		}).orElseGet(() -> {
-			newOrder.setId(id);
-			return ordersService.createOrder(newOrder);
-		});
+		return ordersService.updateOrder(newOrder, id);
 	}
 
 }
