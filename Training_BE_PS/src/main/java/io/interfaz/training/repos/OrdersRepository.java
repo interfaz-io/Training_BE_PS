@@ -9,7 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import io.interfaz.training.pojos.Orders;
+import io.interfaz.training.entities.Orders;
 
 /**
  * @author tthornton
@@ -19,7 +19,6 @@ import io.interfaz.training.pojos.Orders;
 public interface OrdersRepository extends CrudRepository<Orders, Integer> {
 
 		List<Orders> findAll(Sort sort);
-		
 	}
 	
 

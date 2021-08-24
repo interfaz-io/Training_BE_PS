@@ -1,19 +1,15 @@
 /**
  * 
  */
-package io.interfaz.training.pojos;
-
+package io.interfaz.training.entities;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -27,24 +23,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "orders")
+@Table(name = "orders_details")
 @Entity
-public class Orders {
+public class OrdersDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(name="order_id")
+	private int orderID;
 	
-	@Column(name ="customer_id")
-	private int customerId;
-	
-	@Column(name ="purchase_date")
-	private Date purchaseDate;
-	
-	private BigDecimal subtotal;
-	
-	private BigDecimal iva;
-	
-	private BigDecimal total;
-	
-	
+	@Column(name="product_id")
+	private int productId;
+
+	private int quantity;
+
+	private BigDecimal price;
+
+	@Column(name="total_amount")
+	private int totalAmount;
 }
