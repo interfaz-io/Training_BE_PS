@@ -44,7 +44,11 @@ public class Customers {
 
 	private String status;
 	
+<<<<<<< Updated upstream
 	@OneToMany(mappedBy ="customer_id")
+=======
+	@OneToMany(mappedBy = "customer_id")
+>>>>>>> Stashed changes
 	private List<Orders> orders ;
 
 }

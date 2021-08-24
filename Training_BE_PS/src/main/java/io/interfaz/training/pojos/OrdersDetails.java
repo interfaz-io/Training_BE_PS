@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -33,8 +35,9 @@ public class OrdersDetails {
 	@Column(name="order_id")
 	private int orderID;
 	
-	@Column(name="product_id")
-	private int productId;
+	@OneToOne()
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+	private Products productId;
 
 	private int quantity;
 
