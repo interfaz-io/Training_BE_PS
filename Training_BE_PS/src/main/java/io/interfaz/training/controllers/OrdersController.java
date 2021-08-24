@@ -18,7 +18,7 @@ import io.interfaz.training.entities.Products;
 import io.interfaz.training.services.OrdersService;
 
 @RestController
-public class OrdersConroller {
+public class OrdersController {
 	@Autowired
 	public OrdersService ordersService;
 	
@@ -43,8 +43,8 @@ public class OrdersConroller {
 	public Orders replaceOrder(@RequestBody Orders newOrder, @PathVariable int id) {
 		return ordersService.getById(id)
 				.map(order ->{
-					order.setCustomerId(newOrder.getCustomerId());
-					order.setDetails(newOrder.getDetails());
+					order.setCustomers(newOrder.getCustomers());
+					//order.setDetails(newOrder.getDetails());
 					order.setIva(newOrder.getIva());
 					order.setPurchaseDate(newOrder.getPurchaseDate());
 					order.setSubtotal(newOrder.getSubtotal());
