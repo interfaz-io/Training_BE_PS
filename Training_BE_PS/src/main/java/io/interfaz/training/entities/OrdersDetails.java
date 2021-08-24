@@ -38,6 +38,7 @@ public class OrdersDetails {
 	private int quantity;
 
 	private BigDecimal price;
+	
 
 	@Column(name = "total_amount")
 	private int totalAmount;
