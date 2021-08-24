@@ -44,7 +44,7 @@ public class OrdersController {
 	@PutMapping("/orders/{id}")
 	public Orders replaceOrder(@RequestBody Orders newOrder, @PathVariable int id) {
 		return ordersService.getById(id).map(order -> {
-			order.setCustomerID(newOrder.getCustomerID());
+			order.setCustomer(newOrder.getCustomer());
 			order.setDetails(newOrder.getDetails());
 			order.setIva(newOrder.getIva());
 			order.setPurchaseDate(newOrder.getPurchaseDate());

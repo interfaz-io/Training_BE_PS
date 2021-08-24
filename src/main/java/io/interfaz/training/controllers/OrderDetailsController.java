@@ -36,7 +36,7 @@ public class OrderDetailsController {
 		return ordersService.getById(id);
 	}
 
-	@PostMapping("/OrderDetails")
+	@PostMapping("/orderDetails")
 	public OrdersDetails newOrder(@RequestBody OrdersDetails newOrder) {
 		newOrder.setTotalAmount(BigDecimal.valueOf(newOrder.getQuantity()).multiply(newOrder.getPrice()).intValue());
 		return ordersService.createOrder(newOrder);
@@ -50,7 +50,7 @@ public class OrderDetailsController {
 	@PutMapping("/orderDetails/{id}")
 	public OrdersDetails replaceOrderDetails(@RequestBody OrdersDetails newOrder, @PathVariable int id) {
 		return ordersService.getById(id).map(order -> {
-			order.setOrderId(newOrder.getOrderId());
+			order.setId(newOrder.getId());
 			order.setPrice(newOrder.getPrice());
 			order.setProducts(newOrder.getProducts());
 			order.setQuantity(newOrder.getQuantity());
