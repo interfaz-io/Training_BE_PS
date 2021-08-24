@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.interfaz.training</groupId>
-	<artifactId>io.interfaz.training</artifactId>
+	<artifactId>Training_BE_PS</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Training_BE_PS</name>
 	<description>Training_BE_PS</description>
