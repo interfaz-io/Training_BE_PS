@@ -6,11 +6,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import io.interfaz.training.pojos.Merchant;
+import io.interfaz.training.pojos.OrdersDetails;
 
-@RepositoryRestResource(collectionResourceRel = "merchant", path = "merchant")
-public interface OrderListRepository extends CrudRepository<Merchant, Integer> {
+@RepositoryRestResource(collectionResourceRel = "ordersdetails", path = "ordersdetails")
+public interface OrderListRepository extends CrudRepository<OrdersDetails, Integer> {
 
-	List<Merchant> findAll(Sort sort);
+	List<OrdersDetails> findAll(Sort sort);
 
 }
