@@ -20,6 +20,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import io.interfaz.training.views.Views;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,18 +41,24 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	
 	@Column(name = "customer_id")
-	private int  customer;
+	private int  customerId;
 
+	
 	@Column(name = "purchase_date")
 	private Date purchaseDate;
 
+	
 	private BigDecimal subtotal;
 
+	
 	private BigDecimal iva;
 
+	
 	private BigDecimal total;
 
+	
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
 	private List<OrdersDetails> details;
 }

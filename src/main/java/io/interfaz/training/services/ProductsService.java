@@ -38,6 +38,10 @@ public class ProductsService {
 		return (List<Products>) productsRespository.findAll();
 	}
 
+	public List<Products> getSimilar(String name) {
+		return productsRespository.findByNameContaining(name);
+	}
+	
 	public Optional<Products> getById(int id) {
 		return productsRespository.findById(id);
 	}

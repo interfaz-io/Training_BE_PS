@@ -43,7 +43,11 @@ public class OrdersService {
 	public Optional<Orders> getById(int id) {
 		return ordersRespository.findById(id);
 	}
-
+	
+	public List<Orders> getOrderByIdClient(int id) {
+		return ordersRespository.findByCustomerId(id);
+	}
+	
 	public void deleteOrder(int id) {
 		ordersRespository.deleteById(id);
 	}

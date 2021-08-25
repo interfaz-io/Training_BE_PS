@@ -19,4 +19,6 @@ import io.interfaz.training.entities.Products;
 @RepositoryRestResource(collectionResourceRel = "products", path = "products")
 public interface ProductsRepository extends PagingAndSortingRepository<Products, Integer> {
 		List<Products> findAll(Sort sort);
+		
+		List<Products> findByNameContaining(String name);
 	}

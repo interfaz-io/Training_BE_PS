@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.interfaz.training.entities.Products;
@@ -34,6 +35,11 @@ public class ProductsController {
 	@GetMapping("/products/{id}")
 	public Optional<Products> productId(@PathVariable int id) {
 		return productsService.getById(id);
+	}
+
+	@GetMapping("/similarProducts")
+	public List<Products> similarProducts(@RequestParam(name="name") String name) {
+		return productsService.getSimilar(name);
 	}
 
 	@PostMapping("/products")
