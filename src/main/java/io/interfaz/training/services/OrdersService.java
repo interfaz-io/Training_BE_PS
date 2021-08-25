@@ -32,7 +32,7 @@ public class OrdersService {
 			order.setTotal(orderRequest.getTotal());
 			return createOrder(order);
 		}).orElseGet(() -> {
-			return createOrder(orderRequest);
+			return null; 
 		});
 	}
 

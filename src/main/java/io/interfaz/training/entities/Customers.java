@@ -11,9 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,9 +46,8 @@ public class Customers {
 
 	private String status;
 	
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-	@OneToMany
-	@JoinColumn(name = "customer_id")
-	private List<Orders> orders ;
+//	@JsonManagedReference
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+//	private List<Orders> orders ;
 
 }

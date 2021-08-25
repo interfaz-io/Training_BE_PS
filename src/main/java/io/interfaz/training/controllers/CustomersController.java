@@ -23,7 +23,8 @@ public class CustomersController {
 
 	@GetMapping("/customers")
 	public List<Customers> all() {
-		return customerService.getAll();
+		List<Customers> customers =customerService.getAll();
+		return customers;
 	}
 
 	@GetMapping("/customers/{id}")

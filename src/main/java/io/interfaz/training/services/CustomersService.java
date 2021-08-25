@@ -28,7 +28,7 @@ public class CustomersService {
 		return getById(identifier).map(customer -> {
 			customer.setCountryID(customerRequest.getCountryID());
 			customer.setEmail(customerRequest.getEmail());
-			customer.setOrders(customerRequest.getOrders());
+			//customer.setOrders(customerRequest.getOrders());
 			customer.setStatus(customerRequest.getStatus());
 			return createCustomer(customer);
 		}).orElseGet(() -> {

@@ -38,7 +38,7 @@ public class OrderDetailsService {
 					BigDecimal.valueOf(orderRequest.getQuantity()).multiply(orderRequest.getPrice()).intValue());
 			return ordersRespository.save(order);
 		}).orElseGet(() -> {
-			return ordersRespository.save(orderRequest);
+			return null;
 		});
 	}
 
