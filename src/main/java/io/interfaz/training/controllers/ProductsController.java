@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.parser.Part.IgnoreCaseType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.interfaz.training.entities.Products;
@@ -37,8 +37,8 @@ public class ProductsController {
 		return productsService.getById(id);
 	}
 
-	@GetMapping("/similarProducts")
-	public List<Products> similarProducts(@RequestParam(name="name") String name) {
+	@GetMapping("/similarProducts/{name}")
+	public List<Products> similarProducts(@PathVariable String name) {
 		return productsService.getSimilar(name);
 	}
 

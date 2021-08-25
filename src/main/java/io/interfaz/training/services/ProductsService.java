@@ -39,7 +39,7 @@ public class ProductsService {
 	}
 
 	public List<Products> getSimilar(String name) {
-		return productsRespository.findByNameContaining(name);
+		return productsRespository.findByNameContainingIgnoreCase(name);
 	}
 	
 	public Optional<Products> getById(int id) {
