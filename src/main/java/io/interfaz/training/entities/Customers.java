@@ -5,6 +5,7 @@ package io.interfaz.training.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,9 +45,9 @@ public class Customers {
 
 	private String status;
 	
-	//@OneToMany(mappedBy = "customer_id")
-	@OneToMany()
-	@JoinColumn(name="customer_id")
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	@OneToMany
+	@JoinColumn(name = "customer_id")
 	private List<Orders> orders ;
 
 }
