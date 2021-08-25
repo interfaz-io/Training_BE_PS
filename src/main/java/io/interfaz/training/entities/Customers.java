@@ -15,9 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import io.interfaz.training.views.Views;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,8 +52,8 @@ public class Customers {
 	private String status;
 	
     //@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "customer_id")
-	private List<Orders> orders ;
+//	@OneToMany(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "customer_id")
+//	private List<Orders> orders ;
 
 }

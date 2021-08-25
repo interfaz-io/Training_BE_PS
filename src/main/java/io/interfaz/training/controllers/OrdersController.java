@@ -32,7 +32,7 @@ public class OrdersController {
 		return ordersService.getById(id);
 	}
 	
-	@GetMapping("/ordersCustomer/{id}")
+	@GetMapping("/orders/customer/{id}")
 	public List<Orders> orderCustomerId(@PathVariable int id) {
 		return ordersService.getOrderByIdClient(id);
 	}

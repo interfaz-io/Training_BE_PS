@@ -39,6 +39,11 @@ public class CustomersService {
 	public List<Customers> getAll() {
 		return (List<Customers>) customerRespository.findAll();
 	}
+	
+	public List<Customers> getCustomersByName(String name){
+		
+		return customerRespository.findByFirstNameContainingIgnoreCase(name);
+	}
 
 	public Optional<Customers> getById(int id) {
 		return customerRespository.findById(id);

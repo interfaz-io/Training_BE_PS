@@ -37,8 +37,8 @@ public class ProductsController {
 		return productsService.getById(id);
 	}
 
-	@GetMapping("/similarProducts/{name}")
-	public List<Products> similarProducts(@PathVariable String name) {
+	@GetMapping("/products/search/{name}")
+	public List<Products> searchProducts(@PathVariable String name) {
 		return productsService.getSimilar(name);
 	}
 
