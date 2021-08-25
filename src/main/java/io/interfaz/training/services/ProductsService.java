@@ -25,6 +25,7 @@ public class ProductsService {
 
 	public Products updateProduct(Products productsRequest, int identifier) {
 		return getById(identifier).map(product -> {
+			product.setName(productsRequest.getName());
 			product.setDescription(productsRequest.getDescription());
 			product.setPrice(productsRequest.getPrice());
 			product.setStatus(productsRequest.getStatus());
@@ -38,6 +39,10 @@ public class ProductsService {
 		return (List<Products>) productsRespository.findAll();
 	}
 
+	public List<Products> getSimilar(String name) {
+		return productsRespository.findByNameContainingIgnoreCase(name);
+	}
+	
 	public Optional<Products> getById(int id) {
 		return productsRespository.findById(id);
 	}

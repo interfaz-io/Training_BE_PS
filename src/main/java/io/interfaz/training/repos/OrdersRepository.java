@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import io.interfaz.training.entities.Orders;
@@ -19,6 +20,9 @@ import io.interfaz.training.entities.Orders;
 public interface OrdersRepository extends CrudRepository<Orders, Integer> {
 
 		List<Orders> findAll(Sort sort);
+		
+
+		List<Orders> findByCustomerId(@Param("id") int id);
 	}
 	
 

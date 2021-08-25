@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.interfaz.training.entities.OrdersDetails;
-import io.interfaz.training.repos.OrderListRepository;
+import io.interfaz.training.repos.OrderDetailsRepository;
 
 /**
  * 
@@ -18,7 +18,7 @@ import io.interfaz.training.repos.OrderListRepository;
 @Service
 public class OrderDetailsService {
 	@Autowired
-	private OrderListRepository ordersRespository;
+	private OrderDetailsRepository ordersRespository;
 
 	public OrdersDetails createOrder(OrdersDetails orderRequest) {
 		orderRequest.setTotalAmount(
@@ -48,6 +48,10 @@ public class OrderDetailsService {
 
 	public Optional<OrdersDetails> getById(int id) {
 		return ordersRespository.findById(id);
+	}
+	
+	public List<OrdersDetails> findAllByOrder(int id) {
+		return ordersRespository.findAllByOrder(id);
 	}
 
 	public void deleteOrder(int id) {

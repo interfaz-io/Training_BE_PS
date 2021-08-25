@@ -5,9 +5,9 @@ package io.interfaz.training.entities;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,22 +32,28 @@ public class Customers {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	
 	@Column(name = "country_id")
 	private int countryID;
 
+	
 	@Column(name = "first_name")
 	private String firstName;
 
+	
 	@Column(name = "last_name")
 	private String lastName;
 
+	
 	private String email;
 
+	
 	private String status;
 	
     //@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-	@OneToMany
-	@JoinColumn(name = "customer_id")
-	private List<Orders> orders ;
+//	@OneToMany(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "customer_id")
+//	private List<Orders> orders ;
 
 }

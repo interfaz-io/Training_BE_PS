@@ -1,6 +1,5 @@
 package io.interfaz.training.controllers;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,9 +30,14 @@ public class OrderDetailsController {
 		return ordersService.getAll();
 	}
 
-	@GetMapping("/orderDetails/{id}")
-	public Optional<OrdersDetails> productId(@PathVariable int id) {
+	@GetMapping("/orderDetail/{id}")
+	public Optional<OrdersDetails> getOrderDetails(@PathVariable int id) {
 		return ordersService.getById(id);
+	}
+	
+	@GetMapping("/details/{id}")
+	public List<OrdersDetails> findAllByOrder(@PathVariable int id) {
+		return ordersService.findAllByOrder(id);
 	}
 
 	@PostMapping("/orderDetails")

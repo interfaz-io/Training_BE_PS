@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,10 +35,13 @@ public class OrdersDetails {
 	@Column(name = "order_id")
 	private int order;
 
+	
 	private int quantity;
 
+	
 	private BigDecimal price;
 
+	
 	@Column(name = "total_amount")
 	private int totalAmount;
 

@@ -28,8 +28,13 @@ public class OrdersController {
 	}
 
 	@GetMapping("/orders/{id}")
-	public Optional<Orders> productId(@PathVariable int id) {
+	public Optional<Orders> orderId(@PathVariable int id) {
 		return ordersService.getById(id);
+	}
+	
+	@GetMapping("/orders/customer/{id}")
+	public List<Orders> orderCustomerId(@PathVariable int id) {
+		return ordersService.getOrderByIdClient(id);
 	}
 
 	@PostMapping("/orders")

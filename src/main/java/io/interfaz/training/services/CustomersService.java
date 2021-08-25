@@ -28,7 +28,7 @@ public class CustomersService {
 		return getById(identifier).map(customer -> {
 			customer.setCountryID(customerRequest.getCountryID());
 			customer.setEmail(customerRequest.getEmail());
-			customer.setOrders(customerRequest.getOrders());
+			//customer.setOrders(customerRequest.getOrders());
 			customer.setStatus(customerRequest.getStatus());
 			return createCustomer(customer);
 		}).orElseGet(() -> {
@@ -38,6 +38,16 @@ public class CustomersService {
 
 	public List<Customers> getAll() {
 		return (List<Customers>) customerRespository.findAll();
+	}
+	
+	public List<Customers> getCustomersByName(String name){
+		
+		return customerRespository.findByFirstNameContainingIgnoreCase(name);
+	}
+	
+	public List<Customers> getCustomersByEmail(String email){
+		
+		return customerRespository.findByEmailContainingIgnoreCase(email);
 	}
 
 	public Optional<Customers> getById(int id) {

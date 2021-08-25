@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.parser.Part.IgnoreCaseType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -34,6 +35,11 @@ public class ProductsController {
 	@GetMapping("/products/{id}")
 	public Optional<Products> productId(@PathVariable int id) {
 		return productsService.getById(id);
+	}
+
+	@GetMapping("/products/search/{name}")
+	public List<Products> searchProducts(@PathVariable String name) {
+		return productsService.getSimilar(name);
 	}
 
 	@PostMapping("/products")

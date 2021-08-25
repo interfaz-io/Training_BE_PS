@@ -27,17 +27,27 @@ public class CustomersController {
 	}
 
 	@GetMapping("/customers/{id}")
-	public Optional<Customers> productId(@PathVariable int id) {
+	public Optional<Customers> getById(@PathVariable int id) {
 		return customerService.getById(id);
+	}
+	
+	@GetMapping("/customers/search/{name}")
+	public List<Customers> getCustomersByName(@PathVariable String name) {
+		return customerService.getCustomersByName(name);
+	}
+	
+	@GetMapping("/customers/searchEmail/{email}")
+	public List<Customers> getCustomersByEmail(@PathVariable String email) {
+		return customerService.getCustomersByEmail(email);
 	}
 
 	@PostMapping("/customers")
-	public Customers newOrder(@RequestBody Customers newMerchant) {
+	public Customers newCustomer(@RequestBody Customers newMerchant) {
 		return customerService.createCustomer(newMerchant);
 	}
 
 	@DeleteMapping("/customers/{id}")
-	public void deleteOrder(@PathVariable int id) {
+	public void deleteCustomer(@PathVariable int id) {
 		customerService.deleteCustomer(id);
 	}
 

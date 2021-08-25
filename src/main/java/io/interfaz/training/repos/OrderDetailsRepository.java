@@ -11,8 +11,12 @@ import io.interfaz.training.entities.OrdersDetails;
 
 
 @RepositoryRestResource(collectionResourceRel = "ordersdetails", path = "ordersdetails")
-public interface OrderListRepository extends CrudRepository<OrdersDetails, Integer> {
+public interface OrderDetailsRepository extends CrudRepository<OrdersDetails, Integer> {
 
 	List<OrdersDetails> findAll(Sort sort);
+	
+	List<OrdersDetails> findAllByOrder(int id);
+
+
 
 }

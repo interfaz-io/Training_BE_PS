@@ -20,4 +20,8 @@ public interface CustomersRepository extends CrudRepository<Customers, Integer>{
 
 	List<Customers> findAll(Sort sort);
 	
+	List<Customers> findByFirstNameContainingIgnoreCase(String name);
+
+	List<Customers> findByEmailContainingIgnoreCase(String email);
+
 }
