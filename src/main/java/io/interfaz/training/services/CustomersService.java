@@ -44,6 +44,11 @@ public class CustomersService {
 		
 		return customerRespository.findByFirstNameContainingIgnoreCase(name);
 	}
+	
+	public List<Customers> getCustomersByEmail(String email){
+		
+		return customerRespository.findByEmailContainingIgnoreCase(email);
+	}
 
 	public Optional<Customers> getById(int id) {
 		return customerRespository.findById(id);

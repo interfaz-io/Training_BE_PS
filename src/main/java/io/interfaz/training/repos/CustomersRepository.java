@@ -10,7 +10,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import io.interfaz.training.entities.Customers;
-import io.interfaz.training.entities.Products;
 
 /**
  * @author Jermy Calvo
@@ -22,4 +21,7 @@ public interface CustomersRepository extends CrudRepository<Customers, Integer>{
 	List<Customers> findAll(Sort sort);
 	
 	List<Customers> findByFirstNameContainingIgnoreCase(String name);
+
+	List<Customers> findByEmailContainingIgnoreCase(String email);
+
 }

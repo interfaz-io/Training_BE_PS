@@ -35,6 +35,11 @@ public class CustomersController {
 	public List<Customers> getCustomersByName(@PathVariable String name) {
 		return customerService.getCustomersByName(name);
 	}
+	
+	@GetMapping("/customers/searchEmail/{email}")
+	public List<Customers> getCustomersByEmail(@PathVariable String email) {
+		return customerService.getCustomersByEmail(email);
+	}
 
 	@PostMapping("/customers")
 	public Customers newCustomer(@RequestBody Customers newMerchant) {
