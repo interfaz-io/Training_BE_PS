@@ -23,7 +23,7 @@ public class OrdersService {
 	private OrdersRepository ordersRespository;
 
 	public Orders saveOrder(Orders order) {
-		//getTotals(order);
+		// getTotals(order);
 		return ordersRespository.save(order);
 	}
 
@@ -32,7 +32,7 @@ public class OrdersService {
 		return saveOrder(orderRequest);
 	}
 
-//	private void getTotals(Orders order) {
+//	public void getTotals(Orders order) {
 //		List<OrdersDetails> list = order.getDetails();
 //		BigDecimal subTotal = BigDecimal.ZERO;
 //		for (Iterator<OrdersDetails> iterator = list.iterator(); iterator.hasNext();) {
