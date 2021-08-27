@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.interfaz.training.entities.Orders;
 import io.interfaz.training.entities.OrdersDetails;
 import io.interfaz.training.repos.OrderDetailsRepository;
 
@@ -19,16 +20,32 @@ import io.interfaz.training.repos.OrderDetailsRepository;
 public class OrderDetailsService {
 	@Autowired
 	private OrderDetailsRepository ordersRespository;
+	private OrdersService ordersService;
 
-	public OrdersDetails createOrder(OrdersDetails orderRequest) {
-		orderRequest.setTotalAmount(
-				BigDecimal.valueOf(orderRequest.getQuantity()).multiply(orderRequest.getPrice()).intValue());
-		return ordersRespository.save(orderRequest);
+	public OrdersDetails createOrder(OrdersDetails orderDeatils) {
+		getTotalAmount(orderDeatils);
+		getTotalOrder(orderDeatils.getOrder(), orderDeatils);
+		return ordersRespository.save(orderDeatils);
 	}
 
-	public OrdersDetails updateOrder(OrdersDetails orderRequest, int identifier) {
-		orderRequest.setId(identifier);
-			return ordersRespository.save(orderRequest);
+	private void getTotalAmount(OrdersDetails orderDeatils) {
+		orderDeatils.setTotalAmount(
+				BigDecimal.valueOf(orderDeatils.getQuantity()).multiply(orderDeatils.getPrice()).intValue());
+	}
+
+	private void getTotalOrder(int id, OrdersDetails ordersDetails) {
+		Orders order = ordersService.getById(id).get();
+		BigDecimal subTotal = BigDecimal.ZERO;
+		subTotal = subTotal.add(BigDecimal.valueOf(ordersDetails.getTotalAmount()));
+		order.setSubtotal(subTotal);
+		order.setTotal(subTotal.add(subTotal.multiply(order.getIva())));
+	}
+
+	public OrdersDetails updateOrder(OrdersDetails orderDeatils, int identifier) {
+		orderDeatils.setId(identifier);
+		getTotalAmount(orderDeatils);
+		getTotalOrder(identifier, orderDeatils);
+		return ordersRespository.save(orderDeatils);
 	}
 
 	public List<OrdersDetails> getAll() {
