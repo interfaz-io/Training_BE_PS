@@ -30,15 +30,15 @@ public class OrderDetailsService {
 	}
 
 	public OrdersDetails updateOrder(OrdersDetails orderRequest, int identifier) {
-		return getById(identifier).map(order -> {
-			order.setPrice(orderRequest.getPrice());
-			order.setProducts(orderRequest.getProducts());
-			order.setQuantity(orderRequest.getQuantity());
-			order.setTotalAmount(
+		return getById(identifier).map(orderDetails -> {
+			orderDetails.setPrice(orderRequest.getPrice());
+			orderDetails.setProducts(orderRequest.getProducts());
+			orderDetails.setQuantity(orderRequest.getQuantity());
+			orderDetails.setTotalAmount(
 					BigDecimal.valueOf(orderRequest.getQuantity()).multiply(orderRequest.getPrice()).intValue());
-			return ordersRespository.save(order);
+			return ordersRespository.save(orderDetails);
 		}).orElseGet(() -> {
-			return ordersRespository.save(orderRequest);
+			return null;
 		});
 	}
 
