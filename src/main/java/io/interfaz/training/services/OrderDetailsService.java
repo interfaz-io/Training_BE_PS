@@ -42,8 +42,9 @@ public class OrderDetailsService {
 		BigDecimal subTotal = BigDecimal.ZERO;
 		subTotal = subTotal.add(BigDecimal.valueOf(ordersDetails.getTotalAmount()));
 		order.setSubtotal(order.getSubtotal().add(subTotal));
-		order.setIva(order.getIva().add(subTotal.multiply(BigDecimal.valueOf(IVA))));
-		order.setTotal(order.getTotal().add(order.getIva()));
+		BigDecimal tempIva = subTotal.multiply(BigDecimal.valueOf(IVA));
+		order.setIva(order.getIva().add(tempIva));
+		order.setTotal(order.getTotal().add(subTotal.add(tempIva)));
 	}
 
 	public OrdersDetails updateOrder(OrdersDetails orderDeatils, int identifier) {
