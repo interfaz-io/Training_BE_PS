@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
  *
  */
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @Data
 @Table(name = "orders")
 @Entity
@@ -35,24 +35,18 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	
 	@Column(name = "customer_id")
-	private int  customerId;
+	private int customerId;
 
-	
 	@Column(name = "purchase_date")
 	private Date purchaseDate;
 
-	
 	private BigDecimal subtotal;
 
-	
 	private BigDecimal iva;
 
-	
 	private BigDecimal total;
 
-	
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
 	private List<OrdersDetails> details;
 }
