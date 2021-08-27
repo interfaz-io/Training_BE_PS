@@ -22,31 +22,22 @@ public class OrdersService {
 	@Autowired
 	private OrdersRepository ordersRespository;
 
-	public Orders createOrder(Orders order) {
+	public Orders saveOrder(Orders order) {
+		getTotals(order);
 		return ordersRespository.save(order);
 	}
 
 	public Orders updateOrder(Orders orderRequest, int identifier) {
-		getTotals(orderRequest);
-		return getById(identifier).map(order -> {
-			order.setDetails(orderRequest.getDetails());
-			order.setIva(orderRequest.getIva());
-			order.setPurchaseDate(orderRequest.getPurchaseDate());
-			order.setSubtotal(orderRequest.getSubtotal());
-			order.setTotal(orderRequest.getTotal());
-			return createOrder(order);
-		}).orElseGet(() -> {
-			return null;
-		});
+		orderRequest.setId(identifier);
+		return saveOrder(orderRequest);
 	}
 
 	private void getTotals(Orders order) {
 		List<OrdersDetails> list = order.getDetails();
-		BigDecimal subTotal = new BigDecimal(0);
+		BigDecimal subTotal = BigDecimal.ZERO;
 		for (Iterator<OrdersDetails> iterator = list.iterator(); iterator.hasNext();) {
 			OrdersDetails ordersDetails = (OrdersDetails) iterator.next();
-			subTotal.add(BigDecimal.valueOf(ordersDetails.getTotalAmount()));
-			System.out.println(subTotal);
+			subTotal = subTotal.add(BigDecimal.valueOf(ordersDetails.getTotalAmount()));
 		}
 		order.setSubtotal(subTotal);
 		order.setTotal(subTotal.add(subTotal.multiply(order.getIva())));

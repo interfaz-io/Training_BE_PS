@@ -22,24 +22,13 @@ public class OrderDetailsService {
 
 	public OrdersDetails createOrder(OrdersDetails orderRequest) {
 		orderRequest.setTotalAmount(
-				BigDecimal.valueOf(orderRequest.getQuantity())
-							.multiply(orderRequest
-							.getPrice())
-							.intValue());
+				BigDecimal.valueOf(orderRequest.getQuantity()).multiply(orderRequest.getPrice()).intValue());
 		return ordersRespository.save(orderRequest);
 	}
 
 	public OrdersDetails updateOrder(OrdersDetails orderRequest, int identifier) {
-		return getById(identifier).map(orderDetails -> {
-			orderDetails.setPrice(orderRequest.getPrice());
-			orderDetails.setProducts(orderRequest.getProducts());
-			orderDetails.setQuantity(orderRequest.getQuantity());
-			orderDetails.setTotalAmount(
-					BigDecimal.valueOf(orderRequest.getQuantity()).multiply(orderRequest.getPrice()).intValue());
-			return ordersRespository.save(orderDetails);
-		}).orElseGet(() -> {
-			return null;
-		});
+		orderRequest.setId(identifier);
+			return ordersRespository.save(orderRequest);
 	}
 
 	public List<OrdersDetails> getAll() {
@@ -49,7 +38,7 @@ public class OrderDetailsService {
 	public Optional<OrdersDetails> getById(int id) {
 		return ordersRespository.findById(id);
 	}
-	
+
 	public List<OrdersDetails> findAllByOrder(int id) {
 		return ordersRespository.findAllByOrder(id);
 	}

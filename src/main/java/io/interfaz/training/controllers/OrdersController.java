@@ -39,7 +39,7 @@ public class OrdersController {
 
 	@PostMapping("/orders")
 	public Orders newOrder(@RequestBody Orders newOrder) {
-		return ordersService.createOrder(newOrder);
+		return ordersService.saveOrder(newOrder);
 	}
 
 	@DeleteMapping("/orders/{id}")
