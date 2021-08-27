@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import io.interfaz.training.entities.Orders;
@@ -18,8 +19,11 @@ import io.interfaz.training.repos.OrderDetailsRepository;
  */
 @Service
 public class OrderDetailsService {
+	@Value("${IVA}")
+	private double IVA;
 	@Autowired
 	private OrderDetailsRepository ordersRespository;
+	@Autowired
 	private OrdersService ordersService;
 
 	public OrdersDetails createOrder(OrdersDetails orderDeatils) {
@@ -38,13 +42,14 @@ public class OrderDetailsService {
 		BigDecimal subTotal = BigDecimal.ZERO;
 		subTotal = subTotal.add(BigDecimal.valueOf(ordersDetails.getTotalAmount()));
 		order.setSubtotal(subTotal);
-		order.setTotal(subTotal.add(subTotal.multiply(order.getIva())));
+		order.setIva(subTotal.multiply(BigDecimal.valueOf(IVA)));
+		order.setTotal(subTotal.add(order.getIva()));
 	}
 
 	public OrdersDetails updateOrder(OrdersDetails orderDeatils, int identifier) {
 		orderDeatils.setId(identifier);
 		getTotalAmount(orderDeatils);
-		getTotalOrder(identifier, orderDeatils);
+		getTotalOrder(orderDeatils.getOrder(), orderDeatils);
 		return ordersRespository.save(orderDeatils);
 	}
 
