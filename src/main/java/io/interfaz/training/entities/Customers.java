@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 public class Customers {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	
 	@Column(name = "country_id")
