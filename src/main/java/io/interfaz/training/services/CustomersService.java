@@ -25,17 +25,8 @@ public class CustomersService {
 	}
 
 	public Customers updateCustomer(Customers customerRequest, int identifier) {
-		return getById(identifier).map(customer -> {
-			customer.setFirstName(customerRequest.getFirstName());
-			customer.setLastName(customerRequest.getLastName());
-			customer.setCountryID(customerRequest.getCountryID());
-			customer.setEmail(customerRequest.getEmail());
-			//customer.setOrders(customerRequest.getOrders());
-			customer.setStatus(customerRequest.getStatus());
-			return createCustomer(customer);
-		}).orElseGet(() -> {
+		customerRequest.setId(identifier);
 			return createCustomer(customerRequest);
-		});
 	}
 
 	public List<Customers> getAll() {

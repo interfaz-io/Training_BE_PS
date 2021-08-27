@@ -24,15 +24,8 @@ public class ProductsService {
 	}
 
 	public Products updateProduct(Products productsRequest, int identifier) {
-		return getById(identifier).map(product -> {
-			product.setName(productsRequest.getName());
-			product.setDescription(productsRequest.getDescription());
-			product.setPrice(productsRequest.getPrice());
-			product.setStatus(productsRequest.getStatus());
-			return createProduct(product);
-		}).orElseGet(() -> {
-			return createProduct(productsRequest);
-		});
+		productsRequest.setId(identifier);
+		return createProduct(productsRequest);
 	}
 
 	public List<Products> getAll() {
